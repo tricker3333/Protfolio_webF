@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
 
 class NavigationBar extends StatelessWidget {
   final List<String> navItems = ["Home", "About", "Services", "Portfolio", "Testimonials", "Blog", "Contact"];
@@ -13,24 +13,36 @@ class NavigationBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // Logo or Name
-          Text(
-            "John Doe",
-            style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
-          ).animate().fadeIn(delay: 100.ms, duration: 500.ms),
+          FadeIn(
+            duration: 500.ms,
+            repeat: true,
+                  delay: 100.ms,
+            globalKey: GlobalKey(),
+            child: Text(
+              "John Doe",
+              style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+          ),
           // Navigation Links
           Row(
             children: navItems.map((item) {
-              return GestureDetector(
-                onTap: () {
-                  // Implement smooth scroll to the section
-                  print("Navigating to $item");
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child: Text(
-                    item,
-                    style: TextStyle(color: Colors.white70, fontSize: 16),
-                  ).animate().fadeIn(delay: 200.ms, duration: 500.ms),
+              return FadeIn(
+                duration: 500.ms,
+                repeat: true,
+                  delay: 200.ms,
+                globalKey: GlobalKey(),
+                child: GestureDetector(
+                  onTap: () {
+                    // Implement smooth scroll to the section
+                    print("Navigating to $item");
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                    child: Text(
+                      item,
+                      style: TextStyle(color: Colors.white70, fontSize: 16),
+                    ),
+                  ),
                 ),
               );
             }).toList(),

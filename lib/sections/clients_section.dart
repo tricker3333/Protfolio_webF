@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
 import '../widgets/client_logo.dart';
 
 class ClientsSection extends StatelessWidget {
   final List<String> clientLogos = [
-    'assets/imgs/client1.png',
-    'assets/imgs/client2.png',
-    'assets/imgs/client3.png',
-    'assets/imgs/client4.png',
-    'assets/imgs/client5.png',
-    'assets/imgs/client6.png',
+    'assets/imgs/client1.jpg',
+    'assets/imgs/client2.jpg',
+    'assets/imgs/client3.jpg',
+    'assets/imgs/client4.jpg',
+    'assets/imgs/client5.jpg',
+    'assets/imgs/client6.jpg',
   ];
 
   @override
@@ -29,16 +29,21 @@ class ClientsSection extends StatelessWidget {
               fontWeight: FontWeight.bold,
               fontFamily: 'Roboto',
             ),
-          ).animate().fadeIn(delay: 100.ms, duration: 500.ms),
+          ),
           SizedBox(height: 20),
           // Subtitle
-          Text(
-            "Trusted by leading companies worldwide.",
-            style: TextStyle(
-              color: Colors.white70,
-              fontSize: MediaQuery.of(context).size.width > 1200 ? 18 : (MediaQuery.of(context).size.width > 800 ? 16 : 14),
+          SlideInUp(
+            globalKey: GlobalKey(),
+            repeat: true,
+                  delay: 200.ms, duration: 500.ms,
+            child: Text(
+              "Trusted by leading companies worldwide.",
+              style: TextStyle(
+                color: Colors.white70,
+                fontSize: MediaQuery.of(context).size.width > 1200 ? 18 : (MediaQuery.of(context).size.width > 800 ? 16 : 14),
+              ),
             ),
-          ).animate().fadeIn(delay: 300.ms, duration: 500.ms),
+          ),
           SizedBox(height: 40),
           // Clients Logos Grid
           LayoutBuilder(
@@ -59,7 +64,7 @@ class ClientsSection extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return ClientLogo(
                     logo: clientLogos[index],
-                  ).animate().fadeIn(delay: (100 + index * 100).ms, duration: 500.ms);
+                  );
                 },
               );
             },

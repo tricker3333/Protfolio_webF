@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ClientLogo extends StatelessWidget {
   final String logo;
 
-  ClientLogo({required this.logo});
+  ClientLogo({super.key, required this.logo});
 
   @override
   Widget build(BuildContext context) {

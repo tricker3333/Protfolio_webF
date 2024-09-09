@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
 import 'package:flutterwebsite/sections/blog_section.dart';
 import 'package:flutterwebsite/sections/clients_section.dart';
 import 'package:flutterwebsite/sections/contact_section.dart';
@@ -19,46 +19,54 @@ class PortfolioApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'John Doe Portfolio',
+      title: 'Portfolio',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-        fontFamily: 'Roboto',
-      ),
+        theme: ThemeData(
+          fontFamily: 'SourceSans3',
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
+          useMaterial3: true,
+        ),
+
       home: PortfolioWebsite(),
     );
   }
 }
 
-class PortfolioWebsite extends StatelessWidget {
+class PortfolioWebsite extends StatefulWidget {
+  @override
+  State<PortfolioWebsite> createState() => _PortfolioWebsiteState();
+}
+
+class _PortfolioWebsiteState extends State<PortfolioWebsite> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey[900],
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        // controller: context.scrollController,
+        // physics: BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            HeaderSection().animate().fadeIn(duration: 1.seconds),
+            HeaderSection(),
             SizedBox(height: 60),
-            ExperienceSection().animate().fadeIn(duration: 1.seconds),
+            ExperienceSection(),
             SizedBox(height: 60),
-            PortfolioSection().animate().fadeIn(duration: 1.seconds),
+            PortfolioSection(),
             SizedBox(height: 60),
-            ServicesSection().animate().fadeIn(duration: 1.seconds),
+            ServicesSection(),
             SizedBox(height: 60),
-            TestimonialsSection().animate().fadeIn(duration: 1.seconds),
+            TestimonialsSection(),
             SizedBox(height: 60),
-            BlogSection().animate().fadeIn(duration: 1.seconds),
+            BlogSection(),
             SizedBox(height: 60),
-            StatsSection().animate().fadeIn(duration: 1.seconds),
+            StatsSection(),
             SizedBox(height: 60),
-            ClientsSection().animate().fadeIn(duration: 1.seconds),
+            ClientsSection(),
             SizedBox(height: 60),
-            ContactSection().animate().fadeIn(duration: 1.seconds),
+            ContactSection(),
             SizedBox(height: 60),
-            FooterSection().animate().fadeIn(duration: 1.seconds),
+            FooterSection(),
           ],
         ),
       ),

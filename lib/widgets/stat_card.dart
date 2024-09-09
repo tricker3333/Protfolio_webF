@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
 
 class StatCard extends StatelessWidget {
   final String number;
@@ -31,23 +31,33 @@ class StatCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // Number
-          Text(
-            number,
-            style: TextStyle(
-              color: Colors.blueAccent,
-              fontSize: screenWidth > 1200 ? 40 : (screenWidth > 800 ? 35 : 30),
-              fontWeight: FontWeight.bold,
+          SlideInUp(
+            globalKey: GlobalKey(),
+      repeat: true,
+                  delay: 300.ms, duration: 500.ms,
+            child: Text(
+              number,
+              style: TextStyle(
+                color: Colors.blueAccent,
+                fontSize: screenWidth > 1200 ? 40 : (screenWidth > 800 ? 35 : 30),
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ).animate().fadeIn(delay: 100.ms, duration: 500.ms),
+          ),
           SizedBox(height: 10),
           // Label
-          Text(
-            label,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: screenWidth > 1200 ? 18 : (screenWidth > 800 ? 16 : 14),
+          ZoomIn(
+            globalKey: GlobalKey(),
+    repeat: true,
+                  delay: 300.ms, duration: 500.ms,
+            child: Text(
+              label,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: screenWidth > 1200 ? 18 : (screenWidth > 800 ? 16 : 14),
+              ),
             ),
-          ).animate().fadeIn(delay: 200.ms, duration: 500.ms),
+          ),
         ],
       ),
     );

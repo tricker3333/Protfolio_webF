@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
 import 'package:flutterwebsite/widgets/social_icons.dart';
 
 class HeaderSection extends StatelessWidget {
@@ -33,72 +33,108 @@ class HeaderSection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Header Row with Profile Picture and Greetings
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: Image.asset(
-                      'assets/imgs/profile.jpg',
-                      width: isLargeScreen ? 120 : (isMediumScreen ? 100 : 80),
-                      height: isLargeScreen ? 120 : (isMediumScreen ? 100 : 80),
-                      fit: BoxFit.cover,
+              FadeIn(
+                duration: 500.ms,
+                repeat: true,
+                  delay: 100.ms,
+                globalKey: GlobalKey(),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.asset(
+                        'assets/imgs/profile.jpg',
+                        width: isLargeScreen ? 120 : (isMediumScreen ? 100 : 80),
+                        height: isLargeScreen ? 120 : (isMediumScreen ? 100 : 80),
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                  SizedBox(width: isLargeScreen ? 30 : (isMediumScreen ? 20 : 10)),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Hello!",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: isLargeScreen ? 40 : (isMediumScreen ? 30 : 24),
-                          fontWeight: FontWeight.w300,
-                          fontFamily: 'Roboto',
+                    SizedBox(width: isLargeScreen ? 30 : (isMediumScreen ? 20 : 10)),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        FadeIn(
+                          duration: 500.ms,
+                          repeat: true,
+                  delay: 100.ms,
+                          globalKey: GlobalKey(),
+                          child: Text(
+                            "Hello!",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: isLargeScreen ? 40 : (isMediumScreen ? 30 : 24),
+                              fontWeight: FontWeight.w300,
+                              fontFamily: 'Roboto',
+                            ),
+                          ),
                         ),
-                      ).animate().fadeIn(delay: 100.ms, duration: 500.ms),
-                      Text(
-                        "I'm John Doe",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: isLargeScreen ? 60 : (isMediumScreen ? 50 : 36),
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Roboto',
+                        FadeIn(
+                          duration: 500.ms,
+                          repeat: true,
+                  delay: 300.ms,
+                          globalKey: GlobalKey(),
+                          child: Text(
+                            "I'm John Doe",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: isLargeScreen ? 60 : (isMediumScreen ? 50 : 36),
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Roboto',
+                            ),
+                          ),
                         ),
-                      ).animate().fadeIn(delay: 300.ms, duration: 500.ms),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: 30),
               // Subtitle
-              Text(
-                "Full Stack Web Developer",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: isLargeScreen ? 30 : (isMediumScreen ? 24 : 18),
-                  fontWeight: FontWeight.w400,
-                  fontFamily: 'Roboto',
+              FadeIn(
+                duration: 500.ms,
+                repeat: true,
+                  delay: 500.ms,
+                globalKey: GlobalKey(),
+                child: Text(
+                  "Full Stack Web Developer",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: isLargeScreen ? 30 : (isMediumScreen ? 24 : 18),
+                    fontWeight: FontWeight.w400,
+                    fontFamily: 'Roboto',
+                  ),
                 ),
-              ).animate().fadeIn(delay: 500.ms, duration: 500.ms),
+              ),
               SizedBox(height: 20),
               // Description
-              Text(
-                "Crafting beautiful websites with performance and scalability in mind.",
-                style: TextStyle(color: Colors.white70, fontSize: isLargeScreen ? 18 : (isMediumScreen ? 16 : 14)),
-              ).animate().fadeIn(delay: 700.ms, duration: 500.ms),
+              FadeIn(
+                duration: 500.ms,
+                repeat: true,
+                  delay: 700.ms,
+                globalKey: GlobalKey(),
+                child: Text(
+                  "Crafting beautiful websites with performance and scalability in mind.",
+                  style: TextStyle(color: Colors.white70, fontSize: isLargeScreen ? 18 : (isMediumScreen ? 16 : 14)),
+                ),
+              ),
               SizedBox(height: 40),
               // Social Icons
-              Row(
-                children: [
-                  SocialIcon(icon: Icons.linked_camera, url: "https://linkedin.com"),
-                  SizedBox(width: 20),
-                  SocialIcon(icon: Icons.code, url: "https://github.com"),
-                  SizedBox(width: 20),
-                  SocialIcon(icon: Icons.email, url: "mailto:john.doe@example.com"),
-                ],
-              ).animate().fadeIn(delay: 900.ms, duration: 500.ms),
+              FadeIn(
+                duration: 500.ms,
+                repeat: true,
+                  delay: 900.ms,
+                globalKey: GlobalKey(),
+                child: Row(
+                  children: [
+                    SocialIcon(icon: Icons.linked_camera, url: "https://linkedin.com"),
+                    SizedBox(width: 20),
+                    SocialIcon(icon: Icons.code, url: "https://github.com"),
+                    SizedBox(width: 20),
+                    SocialIcon(icon: Icons.email, url: "mailto:john.doe@example.com"),
+                  ],
+                ),
+              ),
             ],
           ),
         );

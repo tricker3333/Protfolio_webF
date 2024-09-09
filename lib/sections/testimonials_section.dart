@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
+
 import '../widgets/testimonial_card.dart';
 
 class TestimonialsSection extends StatelessWidget {
@@ -27,7 +28,10 @@ class TestimonialsSection extends StatelessWidget {
     final isMediumScreen = MediaQuery.of(context).size.width > 800 && MediaQuery.of(context).size.width <= 1200;
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: isLargeScreen ? 60 : (isMediumScreen ? 40 : 20), vertical: isLargeScreen ? 80 : (isMediumScreen ? 60 : 40)),
+      padding: EdgeInsets.symmetric(
+        horizontal: isLargeScreen ? 60 : (isMediumScreen ? 40 : 20),
+        vertical: isLargeScreen ? 80 : (isMediumScreen ? 60 : 40),
+      ),
       decoration: BoxDecoration(
         color: Colors.blueGrey[800],
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -43,20 +47,28 @@ class TestimonialsSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Section Title
-          Text(
-            "What My Clients Say",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: isLargeScreen ? 30 : (isMediumScreen ? 26 : 22),
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Roboto',
+          FadeIn(
+            duration: 500.ms,
+            repeat: true,
+                  delay: 100.ms,
+            globalKey: GlobalKey(),
+            child: Text(
+              "What My Clients Say",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: isLargeScreen ? 30 : (isMediumScreen ? 26 : 22),
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Roboto',
+              ),
             ),
-          ).animate().fadeIn(delay: 100.ms, duration: 500.ms),
+          ),
           SizedBox(height: 20),
           // Testimonials Grid
           LayoutBuilder(
             builder: (context, constraints) {
-              final crossAxisCount = constraints.maxWidth > 1200 ? 3 : (constraints.maxWidth > 800 ? 2 : 1);
+              final crossAxisCount = constraints.maxWidth > 1200
+                  ? 3
+                  : (constraints.maxWidth > 800 ? 2 : 1);
 
               return GridView.builder(
                 itemCount: testimonials.length,
@@ -72,7 +84,7 @@ class TestimonialsSection extends StatelessWidget {
                     name: testimonials[index]['name']!,
                     feedback: testimonials[index]['feedback']!,
                     image: testimonials[index]['image']!,
-                  ).animate().fadeIn(delay: 200.ms, duration: 500.ms);
+                  );
                 },
               );
             },

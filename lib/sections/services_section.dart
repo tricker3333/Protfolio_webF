@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
 import '../widgets/service_card.dart';
 
 class ServicesSection extends StatelessWidget {
@@ -8,7 +8,8 @@ class ServicesSection extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final isLargeScreen = constraints.maxWidth > 1200;
-        final isMediumScreen = constraints.maxWidth <= 1200 && constraints.maxWidth > 800;
+        final isMediumScreen =
+            constraints.maxWidth <= 1200 && constraints.maxWidth > 800;
         final crossAxisCount = isLargeScreen ? 3 : (isMediumScreen ? 2 : 1);
 
         return Container(
@@ -21,24 +22,36 @@ class ServicesSection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Section Title
-              Text(
-                "My Services",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: isLargeScreen ? 30 : (isMediumScreen ? 24 : 18),
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Roboto',
+              ZoomIn(
+                globalKey: GlobalKey(),
+                repeat: true,
+                  delay: 100.ms,
+                duration: 500.ms,
+                child: Text(
+                  "My Services",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: isLargeScreen ? 30 : (isMediumScreen ? 24 : 18),
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Roboto',
+                  ),
                 ),
-              ).animate().fadeIn(delay: 100.ms, duration: 500.ms),
+              ),
               SizedBox(height: 20),
               // Subtitle
-              Text(
-                "I offer a wide range of services to meet your needs.",
-                style: TextStyle(
-                  color: Colors.white70,
-                  fontSize: isLargeScreen ? 18 : (isMediumScreen ? 16 : 14),
+              FadeIn(
+                repeat: true,
+                  delay: 300.ms,
+                duration: 500.ms,
+                globalKey: GlobalKey(),
+                child: Text(
+                  "I offer a wide range of services to meet your needs.",
+                  style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: isLargeScreen ? 18 : (isMediumScreen ? 16 : 14),
+                  ),
                 ),
-              ).animate().fadeIn(delay: 300.ms, duration: 500.ms),
+              ),
               SizedBox(height: 40),
               // Services Grid
               GridView.builder(
@@ -47,15 +60,23 @@ class ServicesSection extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: crossAxisCount,
-                  crossAxisSpacing: isLargeScreen ? 30 : (isMediumScreen ? 20 : 10),
-                  mainAxisSpacing: isLargeScreen ? 30 : (isMediumScreen ? 20 : 10),
+                  crossAxisSpacing:
+                      isLargeScreen ? 30 : (isMediumScreen ? 20 : 10),
+                  mainAxisSpacing:
+                      isLargeScreen ? 30 : (isMediumScreen ? 20 : 10),
                 ),
                 itemBuilder: (context, index) {
-                  return ServiceCard(
-                    title: services[index]['title']!,
-                    description: services[index]['description']!,
-                    icon: services[index]['icon']!,
-                  ).animate().fadeIn(delay: (100 + index * 100).ms, duration: 500.ms);
+                  return ZoomOut(
+                    globalKey: GlobalKey(),
+                    repeat: true,
+                  delay: (200 + index * 100).ms,
+                    duration: 500.ms,
+                    child: ServiceCard(
+                      title: services[index]['title']!,
+                      description: services[index]['description']!,
+                      icon: services[index]['icon']!,
+                    ),
+                  );
                 },
               ),
             ],
@@ -73,7 +94,8 @@ class ServicesSection extends StatelessWidget {
     },
     {
       'title': 'Full Stack Development',
-      'description': 'Develop complete web solutions using modern technologies.',
+      'description':
+          'Develop complete web solutions using modern technologies.',
       'icon': Icons.web,
     },
     {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
 
 class BlogCard extends StatelessWidget {
   final String title;
@@ -39,13 +40,18 @@ class BlogCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Blog Image
-            Container(
-              height: isLargeScreen ? 150 : (isMediumScreen ? 130 : 110),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
-                image: DecorationImage(
-                  image: AssetImage(image),
-                  fit: BoxFit.cover,
+            ZoomOut(
+              globalKey: GlobalKey(),
+          repeat: true,
+                  delay: 300.ms, duration: 500.ms,
+              child: Container(
+                height: isLargeScreen ? 150 : (isMediumScreen ? 130 : 110),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
+                  image: DecorationImage(
+                    image: AssetImage(image),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),

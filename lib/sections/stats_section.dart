@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import '../widgets/stat_card.dart';
+import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
+import 'package:flutterwebsite/widgets/stat_card.dart';
 
 class StatsSection extends StatelessWidget {
   final List<Map<String, String>> stats = [
@@ -58,24 +58,34 @@ class StatsSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Section Title
-          Text(
-            "My Achievements",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: screenWidth > 800 ? 30 : 24,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Roboto',
+          SlideInRight(
+            globalKey: GlobalKey(),
+      repeat: true,
+                  delay: 300.ms, duration: 500.ms,
+            child: Text(
+              "My Achievements",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: screenWidth > 800 ? 30 : 24,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Roboto',
+              ),
             ),
-          ).animate().fadeIn(delay: 100.ms, duration: 500.ms),
+          ),
           SizedBox(height: 20),
           // Subtitle
-          Text(
-            "Some of the milestones I've achieved over the years.",
-            style: TextStyle(
-              color: Colors.white70,
-              fontSize: screenWidth > 800 ? 18 : 16,
+          SlideInLeft(
+            globalKey: GlobalKey(),
+            repeat: true,
+                  delay: 300.ms, duration: 500.ms,
+            child: Text(
+              "Some of the milestones I've achieved over the years.",
+              style: TextStyle(
+                color: Colors.white70,
+                fontSize: screenWidth > 800 ? 18 : 16,
+              ),
             ),
-          ).animate().fadeIn(delay: 300.ms, duration: 500.ms),
+          ),
           SizedBox(height: 40),
           // Stats Grid
           GridView.builder(
@@ -91,7 +101,7 @@ class StatsSection extends StatelessWidget {
               return StatCard(
                 number: stats[index]['number']!,
                 label: stats[index]['label']!,
-              ).animate().fadeIn(delay: (200 + index * 100).ms, duration: 500.ms);
+              );
             },
           ),
         ],

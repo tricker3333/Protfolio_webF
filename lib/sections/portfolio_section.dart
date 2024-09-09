@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
 
 class PortfolioSection extends StatelessWidget {
   final List<String> portfolioImages = [
@@ -29,16 +29,26 @@ class PortfolioSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Section Title
-          Text(
-            "Portfolio",
-            style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
-          ).animate().fadeIn(delay: 100.ms, duration: 500.ms),
+          FadeIn(
+            globalKey: GlobalKey(),
+            repeat: true,
+                  delay: 100.ms, duration: 500.ms,
+            child: Text(
+              "Portfolio",
+              style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
+            ),
+          ),
           SizedBox(height: 20),
           // Subtitle
-          Text(
-            "I have served more than 1000 customers worldwide.",
-            style: TextStyle(color: Colors.white70, fontSize: 18),
-          ).animate().fadeIn(delay: 300.ms, duration: 500.ms),
+          FadeIn(
+            globalKey: GlobalKey(),
+            repeat: true,
+                  delay: 100.ms, duration: 500.ms,
+            child: Text(
+              "I have served more than 1000 customers worldwide.",
+              style: TextStyle(color: Colors.white70, fontSize: 18),
+            ),
+          ),
           SizedBox(height: 40),
           // Portfolio Grid
           GridView.builder(
@@ -48,22 +58,27 @@ class PortfolioSection extends StatelessWidget {
             gridDelegate:
             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 20, mainAxisSpacing: 20),
             itemBuilder: (context, index) {
-              return Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  image: DecorationImage(
-                    image: AssetImage(portfolioImages[index]),
-                    fit: BoxFit.cover,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black45,
-                      blurRadius: 10,
-                      offset: Offset(0, 5),
+              return ZoomOut(
+                globalKey: GlobalKey(),
+                  repeat: true,
+                  delay: 300.ms, duration: 500.ms,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    image: DecorationImage(
+                      image: AssetImage(portfolioImages[index]),
+                      fit: BoxFit.cover,
                     ),
-                  ],
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black45,
+                        blurRadius: 10,
+                        offset: Offset(0, 5),
+                      ),
+                    ],
+                  ),
                 ),
-              ).animate().fadeIn(delay: (100 + index * 100).ms, duration: 500.ms);
+              );
             },
           ),
         ],
