@@ -7,7 +7,7 @@ class TestimonialsSection extends StatelessWidget {
   final List<Map<String, String>> testimonials = [
     {
       'name': 'Jane Smith',
-      'feedback': "John's work is absolutely phenomenal! Highly recommended.",
+      'feedback': "Yash's work is absolutely phenomenal! Highly recommended.",
       'image': 'assets/imgs/client1.jpg',
     },
     {

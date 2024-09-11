@@ -75,7 +75,7 @@ class HeaderSection extends StatelessWidget {
                   delay: 300.ms,
                           globalKey: GlobalKey(),
                           child: Text(
-                            "I'm John Doe",
+                            "I'm Yash Kushwaha",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: isLargeScreen ? 60 : (isMediumScreen ? 50 : 36),
@@ -131,7 +131,7 @@ class HeaderSection extends StatelessWidget {
                     SizedBox(width: 20),
                     SocialIcon(icon: Icons.code, url: "https://github.com"),
                     SizedBox(width: 20),
-                    SocialIcon(icon: Icons.email, url: "mailto:john.doe@example.com"),
+                    SocialIcon(icon: Icons.email, url: "mailto:flutterdeveloper.yash@gmail.com"),
                   ],
                 ),
               ),

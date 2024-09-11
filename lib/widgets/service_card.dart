@@ -13,7 +13,7 @@ class ServiceCard extends StatelessWidget {
       builder: (context, constraints) {
         final isLargeScreen = constraints.maxWidth > 600;
         return Container(
-          padding: EdgeInsets.all(isLargeScreen ? 25 : 15),
+          padding: EdgeInsets.all(isLargeScreen ? 15 : 15),
           decoration: BoxDecoration(
             color: Colors.blueGrey[800],
             borderRadius: BorderRadius.circular(15),

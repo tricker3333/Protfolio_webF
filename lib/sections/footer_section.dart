@@ -34,7 +34,7 @@ class FooterSection extends StatelessWidget {
                   delay: 300.ms,
             globalKey: GlobalKey(),
             child: Text(
-              "© 2024 John Doe. All Rights Reserved.",
+              "© 2024 Yash Kushwaha. All Rights Reserved.",
               style: TextStyle(color: Colors.white70, fontSize: 16),
             ),
           ),

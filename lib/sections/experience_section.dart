@@ -3,7 +3,12 @@ import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
 import '../widgets/experience_timeline.dart';
 import '../widgets/skill_bar.dart';
 
-class ExperienceSection extends StatelessWidget {
+class ExperienceSection extends StatefulWidget {
+  @override
+  State<ExperienceSection> createState() => _ExperienceSectionState();
+}
+
+class _ExperienceSectionState extends State<ExperienceSection> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -159,5 +164,13 @@ class ExperienceSection extends StatelessWidget {
         ],
       ),
     );
+  }
+
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+
   }
 }

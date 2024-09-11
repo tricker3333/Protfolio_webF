@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
+import 'package:flutterwebsite/pages/new.dart';
 import 'package:flutterwebsite/sections/blog_section.dart';
 import 'package:flutterwebsite/sections/clients_section.dart';
 import 'package:flutterwebsite/sections/contact_section.dart';
@@ -24,6 +25,7 @@ class PortfolioApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: 'SourceSans3',
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
           useMaterial3: true,
         ),
 
@@ -37,39 +39,66 @@ class PortfolioWebsite extends StatefulWidget {
   State<PortfolioWebsite> createState() => _PortfolioWebsiteState();
 }
 
-class _PortfolioWebsiteState extends State<PortfolioWebsite> {
+class _PortfolioWebsiteState extends State<PortfolioWebsite> with SingleTickerProviderStateMixin {
+  bool isPageLoaded = false;
+  late AnimationController _animationController;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    _animationController = AnimationController(vsync: this, duration: 600.milliseconds);
+    _animation = Tween<double>(begin: 0.3, end: 1.0).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.bounceInOut),
+    );
+    super.initState();
+    // Simulate loading delay (could be data loading, etc.)
+    Future.delayed(const Duration(seconds: 2), () {
+      setState(() {
+        isPageLoaded = true;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey[900],
-      body: SingleChildScrollView(
-        // controller: context.scrollController,
+      body: isPageLoaded ? SingleChildScrollView(
+        controller: context.scrollController,
         // physics: BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             HeaderSection(),
-            SizedBox(height: 60),
+            const SizedBox(height: 60),
             ExperienceSection(),
-            SizedBox(height: 60),
+            const SizedBox(height: 60),
             PortfolioSection(),
-            SizedBox(height: 60),
+            const SizedBox(height: 60),
             ServicesSection(),
-            SizedBox(height: 60),
+            const SizedBox(height: 60),
             TestimonialsSection(),
-            SizedBox(height: 60),
+            const SizedBox(height: 60),
             BlogSection(),
-            SizedBox(height: 60),
+            const SizedBox(height: 60),
             StatsSection(),
-            SizedBox(height: 60),
+            const SizedBox(height: 60),
             ClientsSection(),
-            SizedBox(height: 60),
+            const SizedBox(height: 60),
             ContactSection(),
-            SizedBox(height: 60),
+            const SizedBox(height: 60),
             FooterSection(),
           ],
         ),
-      ),
+      ) : const Center(child: CircularProgressIndicator(),)
     );
   }
 }
